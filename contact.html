@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyperdecay | Contact</title>
+    <!-- Use the Inter font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN for easy styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the body to apply the font */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* Custom styling for a subtle accent background on sections */
+        .section-bg {
+            background-color: rgba(17, 24, 39, 0.5); /* A dark gray for contrast with the black background */
+        }
+    </style>
+    <!-- React and ReactDOM Libraries -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body class="bg-black text-gray-100 min-h-screen flex flex-col">
+    <!-- This is the root element where your entire React app will be rendered -->
+    <div id="root"></div>
+
+    <!-- The React code for the Contact page -->
+    <script type="text/babel">
+        const { useState } = React;
+
+        const ContactPage = () => {
+            // These are state variables to store the form data, loading status, and messages.
+            const [formData, setFormData] = useState({
+                name: '',
+                email: '',
+                subject: '',
+                message: ''
+            });
+            const [isLoading, setIsLoading] = useState(false);
+            const [message, setMessage] = useState('');
+            const [isSuccess, setIsSuccess] = useState(false);
+
+            // This function updates the form data whenever an input field is changed.
+            const handleChange = (e) => {
+                const { name, value } = e.target;
+                setFormData(prevData => ({ ...prevData, [name]: value }));
+            };
+
+            // This is the function that runs when the form is submitted.
+            const handleSubmit = async (e) => {
+                e.preventDefault();
+
+                setIsLoading(true);
+                setMessage('');
+                setIsSuccess(false);
+
+                // --- START OF MODIFIED CODE FOR FORMSPREE ---
+                // You must replace this URL with the one you get from your Formspree form.
+                // It will look like: https://formspree.io/f/YOUR_FORM_ID
+                // This URL has been updated to the one you shared in the image.
+                const formspreeEndpoint = 'https://formspree.io/f/mldloqop';
+
+                try {
+                    const response = await fetch(formspreeEndpoint, {
+                        method: 'POST',
+                        body: JSON.stringify(formData),
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                    });
+
+                    if (response.ok) {
+                        setFormData({
+                            name: '',
+                            email: '',
+                            subject: '',
+                            message: ''
+                        });
+                        setMessage('Your message has been sent successfully!');
+                        setIsSuccess(true);
+                    } else {
+                        const data = await response.json();
+                        if (data.errors) {
+                            const errorMsg = data.errors.map(error => error.message).join(', ');
+                            setMessage(`There was an error: ${errorMsg}`);
+                        } else {
+                            setMessage('Something went wrong. Please try again.');
+                        }
+                        setIsSuccess(false);
+                    }
+
+                } catch (error) {
+                    console.error('Submission error:', error);
+                    setMessage('Something went wrong. Please check your internet connection.');
+                    setIsSuccess(false);
+                } finally {
+                    setIsLoading(false);
+                }
+                // --- END OF MODIFIED CODE FOR FORMSPREE ---
+            };
+
+            return (
+                <div className="bg-black text-gray-100 min-h-screen flex flex-col">
+                    {/* Header Section for Contact Page */}
+                    <header className="sticky top-0 z-50 bg-gray-900 bg-opacity-95 backdrop-blur-sm p-6 shadow-lg">
+                        <div className="container mx-auto flex justify-between items-center">
+                            <a href="index.html" className="text-3xl font-bold text-indigo-400">Hyperdecay</a>
+                            <nav>
+                                <ul className="flex space-x-6">
+                                    <li><a href="index.html" className="text-lg hover:text-indigo-400 transition-colors duration-300">Home</a></li>
+                                    <li><a href="contact.html" className="text-lg hover:text-indigo-400 transition-colors duration-300">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </header>
+
+                    {/* Contact Section */}
+                    <main className="container mx-auto p-8 flex-grow flex items-center justify-center">
+                        <div className="max-w-xl w-full p-8 section-bg rounded-2xl shadow-xl">
+                            <h2 className="text-4xl font-bold text-center text-white mb-12">Get in Touch</h2>
+                            <form onSubmit={handleSubmit} className="space-y-6">
+                                <div>
+                                    <label htmlFor="name" className="block text-gray-300 font-semibold mb-2">Name</label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        className="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        placeholder="Your Name"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="email" className="block text-gray-300 font-semibold mb-2">Email</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        className="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        placeholder="your.email@example.com"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="subject" className="block text-gray-300 font-semibold mb-2">Subject</label>
+                                    <input
+                                        type="text"
+                                        id="subject"
+                                        name="subject"
+                                        value={formData.subject}
+                                        onChange={handleChange}
+                                        className="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        placeholder="Let's talk about..."
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="message" className="block text-gray-300 font-semibold mb-2">Message</label>
+                                    <textarea
+                                        id="message"
+                                        name="message"
+                                        rows="6"
+                                        value={formData.message}
+                                        onChange={handleChange}
+                                        className="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        placeholder="How can we help you?"
+                                        required
+                                    ></textarea>
+                                </div>
+                                {message && (
+                                    <p className={`text-center font-semibold ${isSuccess ? 'text-green-400' : 'text-red-400'}`}>
+                                        {message}
+                                    </p>
+                                )}
+                                <button
+                                    type="submit"
+                                    disabled={isLoading}
+                                    className={`w-full text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-colors duration-300 transform ${isLoading ? 'bg-indigo-700 cursor-not-allowed' : 'bg-indigo-500 hover:bg-indigo-600 hover:scale-105'}`}
+                                >
+                                    {isLoading ? 'Sending...' : 'Send Message'}
+                                </button>
+                            </form>
+                        </div>
+                    </main>
+
+                    {/* Footer Section */}
+                    <footer className="bg-gray-900 text-center p-6 mt-8 rounded-t-xl">
+                        <p className="text-gray-400">&copy; 2025 Hyperdecay. All rights reserved.</p>
+                    </footer>
+                </div>
+            );
+        };
+
+        const rootElement = document.getElementById('root');
+        const root = ReactDOM.createRoot(rootElement);
+        root.render(<ContactPage />);
+    </script>
+</body>
+</html>

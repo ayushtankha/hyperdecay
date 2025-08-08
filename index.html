@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyperdecay</title>
+    <!-- Use the Inter font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN for easy styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the body to apply the font */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* Custom styling for a subtle accent background on sections */
+        .section-bg {
+            background-color: rgba(17, 24, 39, 0.5); /* A dark gray for contrast with the black background */
+        }
+    </style>
+    <!-- React and ReactDOM Libraries -->
+    <!-- We're using development versions with CDNs for this simple setup -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- We also need Babel to understand JSX syntax in the browser -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body class="bg-black text-gray-100 min-h-screen flex flex-col">
+    <!-- This is the root element where your entire React app will be rendered -->
+    <div id="root"></div>
+
+    <!-- This is your React code using JSX. -->
+    <!-- We need to use type="text/babel" so that the browser can understand the JSX code. -->
+    <script type="text/babel">
+        // This is your main React component.
+        const App = () => {
+            return (
+                // This is the main container for our website.
+                <div className="bg-black text-gray-100 min-h-screen flex flex-col">
+                    {/* Header Section */}
+                    <header className="sticky top-0 z-50 bg-gray-900 bg-opacity-95 backdrop-blur-sm p-6 shadow-lg">
+                        <div className="container mx-auto flex justify-between items-center">
+                            {/* Website Logo/Title */}
+                            <a href="#" className="text-3xl font-bold text-indigo-400">Hyperdecay</a>
+                            {/* Navigation Menu */}
+                            <nav>
+                                <ul className="flex space-x-6">
+                                    <li><a href="#projects" className="text-lg hover:text-indigo-400 transition-colors duration-300">Projects</a></li>
+                                    <li><a href="#mission" className="text-lg hover:text-indigo-400 transition-colors duration-300">Our Mission</a></li>
+                                    <li><a href="#articles" className="text-lg hover:text-indigo-400 transition-colors duration-300">Articles</a></li>
+                                    <li><a href="contact.html" className="text-lg hover:text-indigo-400 transition-colors duration-300">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </header>
+                    {/* Main Content Area */}
+                    <main className="container mx-auto p-8 flex-grow">
+                        {/* Hero Section: The main, eye-catching intro */}
+                        <section className="text-center py-20">
+                            <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight">
+                                Welcome to <span className="text-indigo-400">Hyperdecay</span>
+                            </h1>
+                            <p className="mt-4 text-xl text-gray-400 max-w-2xl mx-auto">
+                                A collective of innovators dedicated to building meaningful apps and solutions.
+                            </p>
+                            <a href="#projects" className="mt-8 inline-block bg-indigo-500 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-600 transition-all duration-300 transform hover:scale-105">
+                                Explore Our Work
+                            </a>
+                        </section>
+                        
+                        {/* Projects Section: Where you'll list your apps */}
+                        <section id="projects" className="py-16">
+                            <h2 className="text-4xl font-bold text-center text-white mb-12">Featured Apps & Projects</h2>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                
+                                {/* Project Card 1 */}
+                                <div className="bg-gray-800 rounded-2xl shadow-xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                                    <img src="https://placehold.co/600x400/3730a3/e0e7ff?text=App+1" alt="Placeholder image for App 1" className="w-full h-48 object-cover" loading="lazy"/>
+                                    <div className="p-6">
+                                        <h3 className="text-2xl font-bold text-white mb-2">Project Name 1</h3>
+                                        <p className="text-gray-400 text-sm">
+                                            A brief and exciting description of our first project. Explain what it does and the technology used.
+                                        </p>
+                                        <div className="mt-4">
+                                            <a href="#" className="inline-block bg-indigo-500 text-white font-medium py-2 px-6 rounded-full text-sm hover:bg-indigo-600 transition-colors duration-300">
+                                                View App
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Project Card 2 */}
+                                <div className="bg-gray-800 rounded-2xl shadow-xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                                    <img src="https://placehold.co/600x400/3730a3/e0e7ff?text=App+2" alt="Placeholder image for App 2" className="w-full h-48 object-cover" loading="lazy"/>
+                                    <div className="p-6">
+                                        <h3 className="text-2xl font-bold text-white mb-2">Project Name 2</h3>
+                                        <p className="text-gray-400 text-sm">
+                                            A brief and exciting description of our second project. Highlight its unique features and benefits.
+                                        </p>
+                                        <div className="mt-4">
+                                            <a href="#" className="inline-block bg-indigo-500 text-white font-medium py-2 px-6 rounded-full text-sm hover:bg-indigo-600 transition-colors duration-300">
+                                                View App
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Project Card 3 */}
+                                <div className="bg-gray-800 rounded-2xl shadow-xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                                    <img src="https://placehold.co/600x400/3730a3/e0e7ff?text=App+3" alt="Placeholder image for App 3" className="w-full h-48 object-cover" loading="lazy"/>
+                                    <div className="p-6">
+                                        <h3 className="text-2xl font-bold text-white mb-2">Project Name 3</h3>
+                                        <p className="text-gray-400 text-sm">
+                                            A brief and exciting description of our third project. Describe its purpose and the problem it solves.
+                                        </p>
+                                        <div className="mt-4">
+                                            <a href="#" className="inline-block bg-indigo-500 text-white font-medium py-2 px-6 rounded-full text-sm hover:bg-indigo-600 transition-colors duration-300">
+                                                View App
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section>
+
+                        {/* Mission/Collaboration Section */}
+                        <section id="mission" className="section-bg rounded-2xl p-10 py-16 text-center">
+                            <h2 className="text-4xl font-bold text-white mb-6">Our Mission: Build Something Meaningful</h2>
+                            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                                We're passionate about using technology for positive change. If your NGO or organization is in need of technical assistance, let's collaborate and make a real impact together.
+                            </p>
+                            <a href="contact.html" className="mt-8 inline-block bg-indigo-500 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-600 transition-all duration-300 transform hover:scale-105">
+                                Contact Us About Collaboration
+                            </a>
+                        </section>
+
+                        {/* Articles/Blog Section */}
+                        <section id="articles" className="py-16">
+                            <h2 className="text-4xl font-bold text-center text-white mb-12">Latest Articles & Insights</h2>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                
+                                {/* Article Card 1 */}
+                                <a href="#" className="block bg-gray-800 rounded-2xl shadow-xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl group">
+                                    <div className="p-6">
+                                        <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors duration-300">Article Title 1</h3>
+                                        <p className="text-gray-400 text-sm">
+                                            A brief summary of our first article or blog post. Tell the reader what they can expect to learn.
+                                        </p>
+                                        <p className="mt-4 text-xs text-gray-500">Published on July 20, 2025</p>
+                                    </div>
+                                </a>
+
+                                {/* Article Card 2 */}
+                                <a href="#" className="block bg-gray-800 rounded-2xl shadow-xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl group">
+                                    <div className="p-6">
+                                        <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors duration-300">Article Title 2</h3>
+                                        <p className="text-gray-400 text-sm">
+                                            A brief summary of our second article or blog post. This could be about a new technology or development process.
+                                        </p>
+                                        <p className="mt-4 text-xs text-gray-500">Published on June 15, 2025</p>
+                                    </div>
+                                </a>
+                                
+                                {/* Article Card 3 */}
+                                <a href="#" className="block bg-gray-800 rounded-2xl shadow-xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl group">
+                                    <div className="p-6">
+                                        <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors duration-300">Article Title 3</h3>
+                                        <p className="text-gray-400 text-sm">
+                                            A brief summary of our third article or blog post. Share a lesson learned from one of our projects.
+                                        </p>
+                                        <p className="mt-4 text-xs text-gray-500">Published on May 10, 2025</p>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </section>
+
+                        {/* Note: The Contact Section has been removed from this file. It is now its own page. */}
+                    </main>
+                    {/* Footer Section */}
+                    <footer className="bg-gray-900 text-center p-6 mt-8 rounded-t-xl">
+                        <p className="text-gray-400">&copy; 2025 Hyperdecay. All rights reserved.</p>
+                    </footer>
+                </div>
+            );
+        };
+
+        // This code renders your App component into the 'root' element in the HTML.
+        const rootElement = document.getElementById('root');
+        const root = ReactDOM.createRoot(rootElement);
+        root.render(<App />);
+    </script>
+</body>
+</html>
